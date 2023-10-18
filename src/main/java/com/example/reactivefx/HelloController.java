@@ -30,22 +30,22 @@ public class HelloController {
     {
         //incBtn.setOnAction(actionEvent -> incrementVal());
         // txtVal.setText(String.valueOf(mod.a));
-        incBtn.setOnAction(actionEvent ->  model.incr());
+        incBtn.setOnAction(actionEvent ->  model.incr());   //кнопка связана с методом модели
         decBtn.setOnAction(actionEvent -> model.decr());
 
 //        model.b.addListener((x, number, t1) ->{
 //            refreshView(x);
 //        });
 
-        sliderVal.setOnMouseReleased(mouseEvent -> {
+        /*sliderVal.setOnMouseReleased(mouseEvent -> {
             model.b.set((int) sliderVal.getValue());
-        });
+        });*/
 
-        mult2Btn.setOnAction(actionEvent -> model.multByTwo());
+        mult2Btn.setOnAction(actionEvent -> model.multByTwo());     //кнопка связана с методом модели
 
-        model.b.bindBidirectional(sliderVal.valueProperty());
+        model.b.bindBidirectional(sliderVal.valueProperty());               //свойство модели связано со слайдером
         //model.b.bindBidirectional(txtVal.textProperty());
-        txtVal.textProperty().bindBidirectional(model.b, new DecimalFormat());
+        txtVal.textProperty().bindBidirectional(model.b, new DecimalFormat());  //текст поля ввода связан со свойством модели
     }
 
     private void refreshView(ObservableValue<? extends Number> x) {

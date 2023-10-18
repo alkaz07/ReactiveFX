@@ -3,17 +3,9 @@ package com.example.reactivefx;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class ObservableModel {
-    public ObservableModel() {
+    SimpleIntegerProperty b = new SimpleIntegerProperty();  //наблюдаемое свойство модели
 
-        b.addListener((value, oldB, newB) -> {
-            System.out.println("значение изменилось, было "+oldB+" стало "+newB);
-        });
-    }
-
-    SimpleIntegerProperty b = new SimpleIntegerProperty();
-    public void incr(){
-        b.set(b.get()+1);
-    }
+    public void incr(){   b.set(b.get()+1); }
 
     public void decr(){
         b.set(b.get()-1);
@@ -34,5 +26,12 @@ public class ObservableModel {
 
     public void setB(int b) {
         this.b.set(b);
+    }
+
+    public ObservableModel() {
+
+        b.addListener((value, oldB, newB) -> {
+            System.out.println("значение изменилось, было "+oldB+" стало "+newB);
+        });
     }
 }
