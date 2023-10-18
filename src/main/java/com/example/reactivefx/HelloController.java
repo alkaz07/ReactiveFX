@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
+import java.text.DecimalFormat;
+
 public class HelloController {
     @FXML
     private TextField txtVal;
@@ -27,19 +29,23 @@ public class HelloController {
     public void initialize()
     {
         //incBtn.setOnAction(actionEvent -> incrementVal());
+        // txtVal.setText(String.valueOf(mod.a));
         incBtn.setOnAction(actionEvent ->  model.incr());
         decBtn.setOnAction(actionEvent -> model.decr());
 
-        model.b.addListener((x, number, t1) ->{
-            refreshView(x);
-        });
+//        model.b.addListener((x, number, t1) ->{
+//            refreshView(x);
+//        });
 
         sliderVal.setOnMouseReleased(mouseEvent -> {
             model.b.set((int) sliderVal.getValue());
         });
 
         mult2Btn.setOnAction(actionEvent -> model.multByTwo());
-        //txtVal.setText(String.valueOf(mod.a));
+
+        model.b.bindBidirectional(sliderVal.valueProperty());
+        //model.b.bindBidirectional(txtVal.textProperty());
+        txtVal.textProperty().bindBidirectional(model.b, new DecimalFormat());
     }
 
     private void refreshView(ObservableValue<? extends Number> x) {
